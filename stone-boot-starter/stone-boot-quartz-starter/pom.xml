@@ -3,19 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>stone-parent</artifactId>
+        <artifactId>stone-boot-starter</artifactId>
         <groupId>com.roseyi</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>stone-boot-starter</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>stone-boot-redis-starter</module>
-        <module>stone-boot-jpa-starter</module>
-        <module>stone-boot-quartz-starter</module>
-    </modules>
+    <artifactId>stone-boot-quartz-starter</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -25,9 +19,20 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.roseyi</groupId>
+            <artifactId>stone-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 </project>
