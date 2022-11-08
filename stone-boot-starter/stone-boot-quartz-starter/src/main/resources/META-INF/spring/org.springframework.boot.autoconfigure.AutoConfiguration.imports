@@ -1,1 +1,1 @@
-com.stone.starter.quartz.config.QuartzConfiguration
+com.stone.starter.quartz.config.QuartzAutoConfiguration

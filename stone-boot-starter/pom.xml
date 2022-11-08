@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>stone-boot-redis-starter</module>
-        <module>stone-boot-jpa-starter</module>
         <module>stone-boot-quartz-starter</module>
     </modules>
 

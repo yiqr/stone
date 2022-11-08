@@ -1,7 +1,8 @@
 package com.stone.starter.quartz.config;
 
+import com.stone.starter.quartz.helper.QuartzJobHelper;
+import org.quartz.Scheduler;
 import org.quartz.spi.JobFactory;
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -20,7 +21,7 @@ import javax.sql.DataSource;
 @AutoConfiguration
 @ConditionalOnBean({DataSource.class})
 @AutoConfigureAfter({DataSource.class})
-public class QuartzConfiguration {
+public class QuartzAutoConfiguration {
 
     /**
      * 配置任务工厂实例
@@ -47,7 +48,7 @@ public class QuartzConfiguration {
      * @param dataSource 数据源实例
      * @return {@link SchedulerFactoryBean}
      */
-    @Bean(destroyMethod = "destroy", autowire = Autowire.NO)
+    @Bean(destroyMethod = "destroy")
     public SchedulerFactoryBean schedulerFactoryBean(@Qualifier("jobFactory") JobFactory jobFactory, @Qualifier("dataSource") DataSource dataSource) {
         SchedulerFactoryBean schedulerFactoryBean = new SchedulerFactoryBean();
         // 将spring管理job自定义工厂交由调度器维护
@@ -65,5 +66,10 @@ public class QuartzConfiguration {
         // 设置配置文件位置
         schedulerFactoryBean.setConfigLocation(new ClassPathResource("/quartz.properties"));
         return schedulerFactoryBean;
+    }
+
+    @Bean
+    public QuartzJobHelper quartzJobHelper(Scheduler scheduler) {
+        return new QuartzJobHelper(scheduler);
     }
 }

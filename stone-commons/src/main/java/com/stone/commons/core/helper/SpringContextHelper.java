@@ -1,4 +1,4 @@
-package com.stone.commons.core;
+package com.stone.commons.core.helper;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

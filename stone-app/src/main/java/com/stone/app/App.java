@@ -1,6 +1,6 @@
 package com.stone.app;
 
-import com.stone.starter.quartz.config.QuartzConfiguration;
+import com.stone.starter.quartz.config.QuartzAutoConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,7 @@ import java.net.UnknownHostException;
  */
 @Slf4j
 @SpringBootApplication
-@Import(QuartzConfiguration.class)
+@Import({QuartzAutoConfiguration.class})
 public class App implements CommandLineRunner {
 
     public static void main(String... args) throws UnknownHostException {
@@ -34,6 +34,7 @@ public class App implements CommandLineRunner {
                 InetAddress.getLocalHost().getHostAddress(),
                 env.getProperty("server.port"));
     }
+
 
     @Override
     public void run(String... args) throws Exception {
