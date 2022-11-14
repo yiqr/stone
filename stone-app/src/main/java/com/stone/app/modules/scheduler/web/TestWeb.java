@@ -1,6 +1,7 @@
 package com.stone.app.modules.scheduler.web;
 
 import com.stone.app.modules.scheduler.job.TestJob;
+import com.stone.starter.quartz.helper.QuartzJobHelper;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
@@ -17,9 +18,11 @@ import java.util.UUID;
 public class TestWeb {
     @Autowired
     SchedulerFactoryBean schedulerFactoryBean;
+    @Autowired
+    QuartzJobHelper quartzJobHelper;
 
-    @GetMapping("/test")
-    public String test() throws SchedulerException {
+    @GetMapping("/addJob")
+    public String addJob() throws SchedulerException {
         Scheduler scheduler = schedulerFactoryBean.getScheduler();
         // 任务名称
         String name = UUID.randomUUID().toString();
@@ -38,6 +41,12 @@ public class TestWeb {
         Trigger trigger = TriggerBuilder.newTrigger().withIdentity(name, group).withSchedule(scheduleBuilder).build();
         // 将触发器与任务绑定到调度器内
         scheduler.scheduleJob(jobDetail, trigger);
+        return "任务名称： " + name;
+    }
+
+    @GetMapping("/delJob")
+    public String delJob(String name) throws SchedulerException {
+        quartzJobHelper.removeJob(name, TestJob.class.getName());
         return "ok";
     }
 }

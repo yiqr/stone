@@ -1,13 +1,13 @@
 package com.stone.app.core.jpa.mode;
 
 import com.stone.app.core.jpa.listener.DomainListener;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
 
 /**
  * @author rose
@@ -16,8 +16,21 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @Setter
 @MappedSuperclass
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
 @EntityListeners(value = {DomainListener.class})
 public abstract class Domain extends mode<String> {
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @Column(name = "created_by", length = ID_LENGTH)
+    private String createdBy;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "updated_by", length = ID_LENGTH)
+    private String updatedBy;
+
+    @Column(name = "remark", length = REMARK_LENGTH)
+    protected String remark;
 }

@@ -34,6 +34,8 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <commons-collections.version>4.4</commons-collections.version>
         <jackson-annotations.version>2.13.4</jackson-annotations.version>
+        <swagger.version>1.6.2</swagger.version>
+
 
         <redisson.version>3.17.7</redisson.version>
         <quartz.version>2.3.2</quartz.version>
@@ -88,6 +90,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-collections4</artifactId>
                 <version>${commons-collections.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
 
             <dependency>

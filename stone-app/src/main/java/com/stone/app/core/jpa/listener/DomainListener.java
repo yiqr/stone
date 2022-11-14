@@ -4,7 +4,7 @@ import com.stone.app.core.jpa.mode.Domain;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -15,12 +15,12 @@ public class DomainListener {
     @PrePersist
     public void persist(final Domain entity) {
         if (Objects.isNull(entity.getCreatedAt())) {
-            entity.setCreatedAt(new Date());
+            entity.setCreatedAt(LocalDateTime.now());
         }
     }
 
     @PreUpdate
     public void update(final Domain entity) {
-        entity.setUpdatedAt(new Date());
+        entity.setUpdatedAt(LocalDateTime.now());
     }
 }

@@ -1,42 +1,44 @@
 package com.stone.app.core.jpa.mode;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author rose
  * @date 2022/11/8 10:27
  */
-@Data
+@Getter
+@Setter
+@MappedSuperclass
 public class mode<ID extends Serializable> implements Serializable {
 
+
+    protected static final int ID_LENGTH = 40;
+    protected static final int REMARK_LENGTH = 200;
+    protected static final int ACTIVE_STATUS_LENGTH = 2;
+    protected static final int AMOUNT_LENGTH = 40;
+    protected static final int NAME_LENGTH = 120;
+    protected static final int BOOLEAN_LENGTH = 1;
+
+
     @Id
-    @JsonProperty("id")
-    @GeneratedValue(generator = "systemUuidGenStrategy")
-    @GenericGenerator(name = "systemUuidGenStrategy", strategy = "uuid2",
+    @GeneratedValue(generator = "customGenerationId")
+    @GenericGenerator(name = "customGenerationId", strategy = "com.stone.app.core.jpa.strategy.IdGenerationStrategy",
             parameters = {
                     @Parameter(
-                            name = "uuid_gen_strategy",
-                            value = "com.stone.starter.jpa.core.strategy.IdGenerationStrategy"
+                            name = "idPrefix",
+                            value = ""
                     )
             }
     )
-    @Column(name = "id")
+    @Column(name = "id", length = 70)
     private ID id;
-
-    @JsonProperty("createdAt")
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @JsonProperty("updatedAt")
-    @Column(name = "updated_at")
-    private Date updatedAt;
 }
