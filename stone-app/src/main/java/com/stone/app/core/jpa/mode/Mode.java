@@ -18,7 +18,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @MappedSuperclass
-public class mode<ID extends Serializable> implements Serializable {
+public class Mode<K extends Serializable> implements Serializable {
 
 
     protected static final int ID_LENGTH = 40;
@@ -40,5 +40,5 @@ public class mode<ID extends Serializable> implements Serializable {
             }
     )
     @Column(name = "id", length = 70)
-    private ID id;
+    private K k;
 }

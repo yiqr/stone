@@ -12,5 +12,5 @@ import java.io.Serializable;
  * @date 2022/11/8 11:04
  */
 @NoRepositoryBean
-public interface BaseRepository<T extends Domain, ID extends Serializable> extends JpaRepository<T, ID>, QuerydslPredicateExecutor<T> {
+public interface BaseRepository<T extends Domain, K extends Serializable> extends JpaRepository<T, K>, QuerydslPredicateExecutor<T> {
 }

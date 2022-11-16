@@ -30,9 +30,9 @@ public class IdGenerationStrategy implements Configurable, IdentifierGenerator {
 
     @Override
     public void configure(Map configurationValues) {
-        Object idPrefix = configurationValues.get("idPrefix");
-        if (Objects.nonNull(idPrefix)) {
-            this.idPrefix = String.valueOf(idPrefix);
+        Object prefix = configurationValues.get("idPrefix");
+        if (Objects.nonNull(prefix)) {
+            this.idPrefix = String.valueOf(prefix);
         }
     }
 }

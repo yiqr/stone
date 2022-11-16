@@ -46,10 +46,6 @@ public class SysOffice extends Domain {
     @Column(name = "sort", nullable = false, length = 4)
     private Integer sort;
 
-    // @ApiModelProperty(name = "负责人")
-    // @Column(name = "master_user", nullable = false, length = ID_LENGTH)
-    // private String masterUser;
-
     @ApiModelProperty(name = "电话号码")
     @Column(name = "phone_no", nullable = false, length = 20)
     private String phoneNo;

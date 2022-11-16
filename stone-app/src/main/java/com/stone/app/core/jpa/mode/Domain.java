@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 @EntityListeners(value = {DomainListener.class})
-public abstract class Domain extends mode<String> {
+public abstract class Domain extends Mode<String> {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
