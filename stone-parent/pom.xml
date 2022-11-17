@@ -36,7 +36,6 @@
         <jackson-annotations.version>2.13.4</jackson-annotations.version>
         <swagger.version>1.6.2</swagger.version>
 
-
         <redisson.version>3.17.7</redisson.version>
         <quartz.version>2.3.2</quartz.version>
         <querydsl.version>5.0.0</querydsl.version>
@@ -200,8 +199,8 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
                         <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
