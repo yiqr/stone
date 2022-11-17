@@ -17,3 +17,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+
+# 生成token的相关配置
+app:
+  jwt:
+    header: Authorization  #请求头
+    signingKey: wsl_  #盐值
+    tokenValidity: 60000 #过期时间 单位秒

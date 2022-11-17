@@ -11,12 +11,18 @@ import lombok.NoArgsConstructor;
 public class GlobalErrorCode {
 
     //-----------------------------------------全局错误状态---------------------------------------------------
-    public static final int SUCCESSFUL = 0,    // 请求成功
-            FAIL = 10000, // 失败
-            SC_FORBIDDEN = 403,              // 权限不足
-            API_ARGUMENT_INVALID = 10001,    // API请求参数校验不通过（如: NotBlank NotEmpty）
-            API_VIOLATION_ERROR = 10002,     // 实体或方法参数约束校验不通过
-            API_REQUEST_TIMEOUT = 10003,     // API请求超时
-            SYSTEM_BUSY = -1,   // 系统繁忙，请稍候再试
-            UNDEFINED = 65535;
+    public static final int SUCCESSFUL = 0;    // 请求成功
+    public static final int FAIL = 10000; // 失败
+    public static final int SC_UNAUTHORIZED = 401;           // 未授权
+    public static final int SC_FORBIDDEN = 403;              // 权限不足
+    public static final int TOKEN_EXPIRED = 4001;            // 权限过期
+    public static final int API_ARGUMENT_INVALID = 10001;    // API请求参数校验不通过（如: NotBlank NotEmpty）
+    public static final int API_VIOLATION_ERROR = 10002;     // 实体或方法参数约束校验不通过
+    public static final int API_REQUEST_TIMEOUT = 10003;     // API请求超时
+    public static final int SYSTEM_BUSY = -1;                // 系统繁忙，请稍候再试
+    public static final int UNDEFINED = 65535;
+
+    public static final int LOGIN_FAIL = 10003;              // 登录失败
+
+
 }

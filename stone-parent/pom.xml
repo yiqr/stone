@@ -35,6 +35,7 @@
         <commons-collections.version>4.4</commons-collections.version>
         <jackson-annotations.version>2.13.4</jackson-annotations.version>
         <swagger.version>1.6.2</swagger.version>
+        <jjwt.version>0.9.1</jjwt.version>
 
         <redisson.version>3.17.7</redisson.version>
         <quartz.version>2.3.2</quartz.version>
@@ -137,7 +138,11 @@
                 <artifactId>querydsl-jpa</artifactId>
                 <version>${querydsl.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
