@@ -1,7 +1,6 @@
 package com.stone.app.core.security;
 
 import com.stone.app.core.security.jwt.JwtUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,7 +27,7 @@ public class JwtUserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        //占时写死 admin
+        //暂时写死 admin
         if (!"admin".equals(name)) {
             throw new UsernameNotFoundException("用户名或密码不存在");
         }

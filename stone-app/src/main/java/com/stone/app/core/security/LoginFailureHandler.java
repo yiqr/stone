@@ -17,6 +17,8 @@ import java.io.IOException;
 
 
 /**
+ * 登录失败处理器
+ *
  * @author rose
  * @date 2022-11-17 22:53
  */

@@ -1,13 +1,16 @@
 package com.stone.app.modules.sys.mode;
 
+import com.google.common.collect.Sets;
 import com.stone.app.core.jpa.mode.Domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 /**
  * @author rose
@@ -72,4 +75,15 @@ public class SysUser extends Domain {
     @ApiModelProperty(value = "删除时间")
     @Column(name = "del_time")
     private LocalDateTime delTime;
+
+    @ApiModelProperty("员工所属部门")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "office_id", nullable = false)
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private SysOffice office;
+
+    @ApiModelProperty(value = "用户角色", required = true)
+    @ManyToMany(mappedBy = "users")
+    @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<SysRole> roles = Sets.newHashSet();
 }

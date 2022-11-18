@@ -72,7 +72,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //过滤登录退出请求
                 .authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/login/**").permitAll()
+                .antMatchers("/login/**","login").permitAll()
                 //所有请求都需要拦截
                 .anyRequest()
                 .authenticated();

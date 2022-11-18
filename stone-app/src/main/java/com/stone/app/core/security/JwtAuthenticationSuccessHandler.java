@@ -2,9 +2,10 @@ package com.stone.app.core.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stone.app.core.security.jwt.JwtUtils;
-import com.stone.commons.jaxrs.GlobalErrorCode;
 import com.stone.commons.jaxrs.RespondedBody;
+import com.stone.commons.utils.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -15,8 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -39,16 +38,9 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
         String name = authentication.getName();
         //生成token
         String token = jwtUtils.generateToken(name);
-
         //将生成的authentication放入容器中，生成安全的上下文
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        Map<String,Object> ret = new HashMap<>();
-        ret.put("code",200);
-        ret.put("message","登录成功");
-        ret.put("data",token);
-        httpServletResponse.setContentType("text/json;charset=utf-8");
-        httpServletResponse.getWriter().write(
-                objectMapper.writeValueAsString(ret));
+        ResponseUtils.response(httpServletResponse, MediaType.APPLICATION_JSON, HttpServletResponse.SC_OK,
+                objectMapper.writeValueAsString(RespondedBody.success(token)));
     }
 }

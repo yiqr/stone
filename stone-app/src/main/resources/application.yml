@@ -12,7 +12,6 @@ spring:
       connection-timeout: 60000
       minimum-idle: 10
       maximum-pool-size: 20
-    name: xx-dataSource
   jpa:
     show-sql: true
     hibernate:

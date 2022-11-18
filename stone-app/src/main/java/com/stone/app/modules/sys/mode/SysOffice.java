@@ -1,5 +1,7 @@
 package com.stone.app.modules.sys.mode;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
 import com.stone.app.core.jpa.mode.Domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -8,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author rose
@@ -73,4 +76,17 @@ public class SysOffice extends Domain {
     @ApiModelProperty(value = "删除时间")
     @Column(name = "del_time")
     private LocalDateTime delTime;
+
+    @ApiModelProperty("机构员工")
+    @JsonIgnore
+    @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
+    @OrderBy("createdAt asc ")
+    private List<SysUser> users = Lists.newArrayList();
+
+    @ApiModelProperty("机构员工")
+    @JsonIgnore
+    @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
+    @OrderBy("createdAt asc ")
+    private List<SysRole> roles = Lists.newArrayList();
+
 }
