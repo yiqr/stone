@@ -1,16 +1,17 @@
-package com.stone.app.core.security;
+package com.stone.app.core.security.app.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stone.app.core.security.exception.TokenExpiredException;
 import com.stone.commons.jaxrs.GlobalErrorCode;
 import com.stone.commons.jaxrs.RespondedBody;
 import com.stone.commons.utils.ResponseUtils;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +25,10 @@ import java.io.IOException;
  * @date 2022-11-17 22:31
  */
 @Component
-public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class AppAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
-    @Resource
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {

@@ -1,4 +1,4 @@
-package com.stone.app.modules.sys.mode;
+package com.stone.app.modules.sys.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
@@ -19,20 +19,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_office", uniqueConstraints = @UniqueConstraint(columnNames = {"office_id"}),
-        indexes = {@Index(columnList = "parent_id")}
+@Table(name = "sys_office", indexes = {@Index(columnList = "parent_id")}
 )
 public class SysOffice extends Domain {
-
-    @NotBlank
-    @ApiModelProperty(name = "机构ID（唯一）")
-    @Column(name = "office_id", nullable = false, length = ID_LENGTH)
-    private String userId;
-
-    @NotBlank
-    @ApiModelProperty(name = "父机构ID")
-    @Column(name = "parent_id", nullable = false, length = ID_LENGTH)
-    private String parentId;
 
     @NotBlank
     @ApiModelProperty(name = "父机构ID")
@@ -77,13 +66,18 @@ public class SysOffice extends Domain {
     @Column(name = "del_time")
     private LocalDateTime delTime;
 
+    @ManyToOne
+    @ApiModelProperty(name = "父机构ID")
+    @JoinColumn(name = "parent_id")
+    private SysMenu parent;
+
     @ApiModelProperty("机构员工")
     @JsonIgnore
     @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
     @OrderBy("createdAt asc ")
     private List<SysUser> users = Lists.newArrayList();
 
-    @ApiModelProperty("机构员工")
+    @ApiModelProperty("机构角色")
     @JsonIgnore
     @OneToMany(mappedBy = "office", fetch = FetchType.LAZY)
     @OrderBy("createdAt asc ")

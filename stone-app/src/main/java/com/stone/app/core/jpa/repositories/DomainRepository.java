@@ -1,16 +1,13 @@
 package com.stone.app.core.jpa.repositories;
 
 import com.stone.app.core.jpa.mode.Domain;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
-
-import java.io.Serializable;
 
 /**
  * @author rose
  * @date 2022/11/8 11:04
  */
 @NoRepositoryBean
-public interface BaseRepository<T extends Domain, K extends Serializable> extends JpaRepository<T, K>, QuerydslPredicateExecutor<T> {
+public interface DomainRepository<T extends Domain> extends ModelRepository<T, String>, QuerydslPredicateExecutor<T> {
 }

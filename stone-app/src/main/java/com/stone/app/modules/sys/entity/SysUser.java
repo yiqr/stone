@@ -1,4 +1,4 @@
-package com.stone.app.modules.sys.mode;
+package com.stone.app.modules.sys.entity;
 
 import com.google.common.collect.Sets;
 import com.stone.app.core.jpa.mode.Domain;
@@ -19,16 +19,10 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "sys_user", uniqueConstraints = @UniqueConstraint(columnNames = {"user_id"}),
+@Table(name = "sys_user",
         indexes = {@Index(columnList = "login_name"), @Index(columnList = "phone_no")}
 )
 public class SysUser extends Domain {
-
-    @NotBlank
-    @ApiModelProperty(name = "用户ID（唯一）")
-    @Column(name = "user_id", nullable = false, length = ID_LENGTH)
-    private String userId;
-
     @NotBlank
     @ApiModelProperty(name = "登录名")
     @Column(name = "login_name", nullable = false, length = ID_LENGTH)
@@ -39,14 +33,18 @@ public class SysUser extends Domain {
     @Column(name = "login_pwd", nullable = false, length = 40)
     private String loginPwd;
 
-    @NotBlank
-    @ApiModelProperty(name = "加密盐")
-    @Column(name = "salt", nullable = false, length = 64)
-    private String salt;
+//    @NotBlank
+//    @ApiModelProperty(name = "加密盐")
+//    @Column(name = "salt", nullable = false, length = 64)
+//    private String salt;
 
     @ApiModelProperty(name = "用户头像")
     @Column(name = "avatar")
     private String avatar;
+
+    @ApiModelProperty(name = "用户名称")
+    @Column(name = "name", length = NAME_LENGTH)
+    private String name;
 
     @ApiModelProperty(name = "用户昵称")
     @Column(name = "nickname", length = NAME_LENGTH)
@@ -68,22 +66,27 @@ public class SysUser extends Domain {
     @Column(name = "actual_name", length = NAME_LENGTH)
     private String actualName;
 
-    @ApiModelProperty(value = "删除标记")
-    @Column(name = "del_flag", length = BOOLEAN_LENGTH)
-    private Integer delFlag;
+    @ApiModelProperty(name = "是否锁定")
+    @Column(name = "locked")
+    private boolean locked;
 
-    @ApiModelProperty(value = "删除时间")
-    @Column(name = "del_time")
-    private LocalDateTime delTime;
+    @ApiModelProperty(value = "锁定时间")
+    @Column(name = "locked_time")
+    private LocalDateTime lockedTime;
 
     @ApiModelProperty("员工所属部门")
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "office_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private SysOffice office;
 
     @ApiModelProperty(value = "用户角色", required = true)
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "sys_user_role",//中间表的名称
+            //中间表user_role_rel的字段关联sys_user表的主键user_id
+            joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            //中间表user_role_rel字段关联sys_role表的主键字段role_id
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+    )
     @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<SysRole> roles = Sets.newHashSet();
 }

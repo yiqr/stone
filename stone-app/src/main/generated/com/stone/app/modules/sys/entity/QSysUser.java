@@ -1,12 +1,12 @@
-package com.stone.app.modules.sys.mode;
+package com.stone.app.modules.sys.entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.*;
-
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.PathMetadata;
 import com.querydsl.core.types.dsl.*;
 
-import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
-import com.querydsl.core.types.Path;
+
+import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 
 
 /**
@@ -16,6 +16,8 @@ import com.querydsl.core.types.Path;
 public class QSysUser extends EntityPathBase<SysUser> {
 
     private static final long serialVersionUID = 793433976L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QSysUser sysUser = new QSysUser("sysUser");
 
@@ -48,10 +50,14 @@ public class QSysUser extends EntityPathBase<SysUser> {
 
     public final StringPath nickname = createString("nickname");
 
+    public final QSysOffice office;
+
     public final StringPath phoneNo = createString("phoneNo");
 
     //inherited
     public final StringPath remark = _super.remark;
+
+    public final SetPath<SysRole, QSysRole> roles = this.<SysRole, QSysRole>createSet("roles", SysRole.class, QSysRole.class, PathInits.DIRECT2);
 
     public final StringPath salt = createString("salt");
 
@@ -61,18 +67,25 @@ public class QSysUser extends EntityPathBase<SysUser> {
     //inherited
     public final StringPath updatedBy = _super.updatedBy;
 
-    public final StringPath userId = createString("userId");
-
     public QSysUser(String variable) {
-        super(SysUser.class, forVariable(variable));
+        this(SysUser.class, forVariable(variable), INITS);
     }
 
     public QSysUser(Path<? extends SysUser> path) {
-        super(path.getType(), path.getMetadata());
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
     public QSysUser(PathMetadata metadata) {
-        super(SysUser.class, metadata);
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QSysUser(PathMetadata metadata, PathInits inits) {
+        this(SysUser.class, metadata, inits);
+    }
+
+    public QSysUser(Class<? extends SysUser> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.office = inits.isInitialized("office") ? new QSysOffice(forProperty("office")) : null;
     }
 
 }

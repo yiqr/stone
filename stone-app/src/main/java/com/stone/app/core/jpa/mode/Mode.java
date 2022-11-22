@@ -40,5 +40,5 @@ public class Mode<K extends Serializable> implements Serializable {
             }
     )
     @Column(name = "id", length = 70)
-    private K k;
+    private K id;
 }

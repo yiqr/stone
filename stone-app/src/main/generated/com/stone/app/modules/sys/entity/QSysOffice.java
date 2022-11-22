@@ -1,12 +1,12 @@
-package com.stone.app.modules.sys.mode;
+package com.stone.app.modules.sys.entity;
 
-import static com.querydsl.core.types.PathMetadataFactory.*;
-
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.PathMetadata;
 import com.querydsl.core.types.dsl.*;
 
-import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
-import com.querydsl.core.types.Path;
+
+import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 
 
 /**
@@ -51,6 +51,8 @@ public class QSysOffice extends EntityPathBase<SysOffice> {
     //inherited
     public final StringPath remark = _super.remark;
 
+    public final ListPath<SysRole, QSysRole> roles = this.<SysRole, QSysRole>createList("roles", SysRole.class, QSysRole.class, PathInits.DIRECT2);
+
     public final NumberPath<Integer> sort = createNumber("sort", Integer.class);
 
     //inherited
@@ -59,7 +61,7 @@ public class QSysOffice extends EntityPathBase<SysOffice> {
     //inherited
     public final StringPath updatedBy = _super.updatedBy;
 
-    public final StringPath userId = createString("userId");
+    public final ListPath<SysUser, QSysUser> users = this.<SysUser, QSysUser>createList("users", SysUser.class, QSysUser.class, PathInits.DIRECT2);
 
     public final StringPath zipCode = createString("zipCode");
 

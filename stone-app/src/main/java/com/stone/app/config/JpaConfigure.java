@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @ConditionalOnBean({DataSourceConfigure.class})
 @EnableJpaRepositories({"com.stone.**.repositories"})
-@EntityScan({"com.stone.**.mode"})
+@EntityScan({"com.stone.**.entity"})
 public class JpaConfigure {
 
     @Bean

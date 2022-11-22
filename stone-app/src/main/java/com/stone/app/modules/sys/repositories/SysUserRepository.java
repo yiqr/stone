@@ -1,7 +1,11 @@
 package com.stone.app.modules.sys.repositories;
 
-import com.stone.app.core.jpa.repositories.BaseRepository;
-import com.stone.app.modules.sys.mode.SysUser;
+import com.stone.app.core.jpa.repositories.DomainRepository;
+import com.stone.app.modules.sys.entity.SysUser;
 
-public interface SysUserRepository extends BaseRepository<SysUser, String> {
+import java.util.Optional;
+
+public interface SysUserRepository extends DomainRepository<SysUser> {
+
+    Optional<SysUser> findByLoginName(String loginName);
 }
