@@ -6,6 +6,7 @@ import com.stone.app.core.security.model.PersistentToken;
 import com.stone.commons.jaxrs.RespondedBody;
 import com.stone.commons.utils.IPUtils;
 import io.swagger.annotations.Api;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author rose

@@ -3,12 +3,12 @@ package com.stone.app.modules.sys.entity;
 import com.google.common.collect.Sets;
 import com.stone.app.core.jpa.mode.Domain;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.Set;
 

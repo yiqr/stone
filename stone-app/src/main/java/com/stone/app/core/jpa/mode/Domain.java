@@ -1,12 +1,12 @@
 package com.stone.app.core.jpa.mode;
 
 import com.stone.app.core.jpa.listener.DomainListener;
+import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
 /**

@@ -51,7 +51,7 @@ public abstract class AbstractWebMvcConfiguration implements WebMvcConfigurer {
         return localValidatorFactoryBean;
     }
 
-    public javax.validation.Validator beanValidator() {
+    public jakarta.validation.Validator beanValidator() {
         CustomValidatorBean validatorBean = new CustomValidatorBean();
         validatorBean.setMessageInterpolator(new ResourceBundleMessageInterpolator(new MessageSourceResourceBundleLocator(messageSource())));
         return validatorBean;

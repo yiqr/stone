@@ -4,11 +4,11 @@ import com.google.common.collect.Sets;
 import com.stone.app.core.jpa.mode.Domain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 /**

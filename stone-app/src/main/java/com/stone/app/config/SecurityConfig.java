@@ -89,9 +89,10 @@ public class SecurityConfig {
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     .and()
                     .authenticationManager(appAuthenticationManager())
-                    .antMatcher(APP_API_MATCH)
                     .authorizeHttpRequests()
-                    .antMatchers("/api/app/search/**"
+                    .requestMatchers(APP_API_MATCH)
+                    .authenticated()
+                    .requestMatchers("/api/app/search/**"
                             , "/api/app/demo/**"
                             , "/api/auth/**"
                             , "/api/app/test/**").permitAll()

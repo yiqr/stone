@@ -1,9 +1,9 @@
 package com.stone.app.core.jpa.listener;
 
 import com.stone.app.core.jpa.mode.Domain;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

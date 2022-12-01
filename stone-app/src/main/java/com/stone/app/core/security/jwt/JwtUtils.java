@@ -4,9 +4,9 @@ import com.stone.app.core.security.model.PersistentToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
@@ -57,7 +57,7 @@ public class JwtUtils {
                 .getBody();
         return TokenClaims.analysis(body);
     }
-    
+
 //    /**
 //     * 生成token
 //     *

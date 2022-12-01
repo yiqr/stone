@@ -4,6 +4,8 @@ import com.google.common.base.Throwables;
 import com.stone.commons.core.LocaleMessage;
 import com.stone.commons.jaxrs.GlobalErrorCode;
 import com.stone.commons.jaxrs.RespondedBody;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataAccessException;
@@ -24,8 +26,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.util.WebUtils;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.nio.file.AccessDeniedException;
 import java.util.Arrays;
 import java.util.Set;
@@ -85,7 +85,8 @@ public class AbstractRespondedExceptionHandler extends ResponseEntityExceptionHa
      * @param request 请求
      * @return ResponseEntity
      */
-    @Override
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    @ResponseBody
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
         log.warn(ex.getMessage());
@@ -156,7 +157,6 @@ public class AbstractRespondedExceptionHandler extends ResponseEntityExceptionHa
      * @param ex 异常
      * @return ResponseEntity
      */
-    @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         this.errorLog(ex);
         if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
