@@ -1,7 +1,6 @@
 package com.stone.app.core.jpa.repositories;
 
 import com.stone.app.core.jpa.mode.Domain;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.NoRepositoryBean;
 
 /**
@@ -9,5 +8,7 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @date 2022/11/8 11:04
  */
 @NoRepositoryBean
-public interface DomainRepository<T extends Domain> extends ModelRepository<T, String>, QuerydslPredicateExecutor<T> {
+public interface DomainRepository<T extends Domain> extends ModelRepository<T, String>
+        // , QuerydslPredicateExecutor<T>
+{
 }
