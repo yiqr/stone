@@ -51,8 +51,9 @@ public class JwtUtils {
      * @return
      */
     public TokenClaims analysisToken(String token) {
-        Claims body = Jwts.parser()
+        Claims body = Jwts.parserBuilder()
                 .setSigningKey(jwtProperties.getSigningKey().getBytes(StandardCharsets.UTF_8))
+                .build()
                 .parseClaimsJws(token)
                 .getBody();
         return TokenClaims.analysis(body);

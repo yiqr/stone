@@ -1,6 +1,5 @@
 package com.stone.app.config;
 
-import com.stone.app.commons.Constants;
 import com.stone.app.core.security.app.AppUserDetailsService;
 import com.stone.app.core.security.app.filter.AppAuthTokenFilter;
 import com.stone.app.core.security.app.handler.AppAccessDeniedHandler;
@@ -96,8 +95,8 @@ public class SecurityConfig {
                             , "/api/app/demo/**"
                             , "/api/auth/**"
                             , "/api/app/test/**").permitAll()
-                    .anyRequest().hasAnyAuthority(Constants.ROLE_USER);
-//                    .anyRequest().authenticated();
+                    // .anyRequest().hasAnyAuthority(Constants.ROLE_USER);
+                    .anyRequest().authenticated();
 
             http.addFilterBefore(appAuthTokenFilter(), UsernamePasswordAuthenticationFilter.class);
             return http.build();

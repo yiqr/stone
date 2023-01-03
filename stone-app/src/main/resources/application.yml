@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_URL:127.0.0.1:3306}/${MYSQL_DATABASE:xx}?useSSL=false&characterEncoding=utf8&characterSetResults=utf8&useUnicode=false&rewriteBatchedStatements=true&autoReconnect=true
+    url: jdbc:mysql://${MYSQL_URL:127.0.0.1:3306}/${MYSQL_DATABASE:stone}?useSSL=false&characterEncoding=utf8&characterSetResults=utf8&useUnicode=false&rewriteBatchedStatements=true&autoReconnect=true
     username: root
     password: 123123
     type: com.zaxxer.hikari.HikariDataSource
@@ -22,5 +22,5 @@ spring:
 app:
   jwt:
     header: Authorization  #请求头
-    signingKey: wsl_  #盐值
+    signingKey: wsl_1231231231231231231231232132132131231231231231  #盐值
     tokenValidity: 60000 #过期时间 单位秒
